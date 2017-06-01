@@ -41,6 +41,10 @@ import javax.xml.parsers.ParserConfigurationException;
 /**
  * Created by user on 2017/6/1.
  * 台湾地图
+ * 1、从raw源文件资源文件夹中读取台湾地图svg文件进行解析，把pathData转换成Path对象，并封装成MapPathItem对象，保存在列表中
+ * 2、解析完成根据地图大小和View的测量模式、测量值确定View的大小，根据View的小和地图大小确定一个缩放值mScale
+ * 3、onDraw中遍历MapPathItem对象列表，让每个MapPathItem绘制其自身，完成地图显示
+ * 4、使用GestureDetector辅助类捕获点击事件，判断点击落在哪个地名路径区域上，突出显示
  */
 
 public class TaiwanMapView extends View {
@@ -53,6 +57,10 @@ public class TaiwanMapView extends View {
      * 选中的item
      */
     private MapPathItem mMapPathItem;
+    /**
+     * 地图svg类型文件名称
+     */
+    private final int mMapRaw = R.raw.taiwanhigh;
 
     /**
      * 地图背景颜色
@@ -159,7 +167,7 @@ public class TaiwanMapView extends View {
                 checkSelected(e.getX() / mScale, e.getY() / mScale);
 
                 // 吐司提示点击地名
-                if(mMapPathItem != null) {
+                if (mMapPathItem != null) {
                     Toast.makeText(getContext(), "" + mMapPathItem.getName(), Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -296,7 +304,7 @@ public class TaiwanMapView extends View {
             public void run() {
                 try {
                     // 把地图svg raw转换成InputStream
-                    InputStream inputStream = getResources().openRawResource(R.raw.taiwanhigh);
+                    InputStream inputStream = getResources().openRawResource(mMapRaw);
 
                     // 使用DocumentBuilder来解析inputStream，所有首先创建一个DocumentBuilder对象
                     DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
