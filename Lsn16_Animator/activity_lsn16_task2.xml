@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.android.dongnaovip2017.activity.superui.Lsn16Task2">
+
+    <RelativeLayout
+        android:id="@+id/lsn16Task2_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:src="@drawable/icon_2" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@android:color/holo_red_dark"
+            android:onClick="startGo"
+            android:text="@string/show"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+</LinearLayout>
